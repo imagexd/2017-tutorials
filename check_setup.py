@@ -18,9 +18,9 @@ pkg_names = {
 }
 
 for (pkg, version_wanted) in reqs:
-    pkg = pkg_names.get(pkg, pkg)
+    module_name = pkg_names.get(pkg, pkg)
     try:
-        m = __import__(pkg)
+        m = __import__(module_name)
         status = '✓'
     except ImportError as e:
         m = None
@@ -36,6 +36,6 @@ for (pkg, version_wanted) in reqs:
         if LooseVersion(version_wanted) > LooseVersion(version_installed):
             status = 'X'
     print('[{}] {:<11} {}'.format(
-        status, pkg.ljust(11), version_installed)
+        status, pkg.ljust(13), version_installed)
         )
 
